@@ -20,7 +20,7 @@ Microglial morphology provides relevant information about functional state, neur
 
 
 
-1. Universal dataset loader.
+1.Universal dataset loader.
 
 
 
@@ -187,8 +187,4 @@ Translational Stroke Laboratory (TREAT), Clinical Neurosciences Research Laborat
 Jorge Pascual Guerra - ORCID ID: 0000-0001-6667-3310
 
 Neurooncology Unit, Chronic Disease Department (UFIEC), Instituto de Salud Carlos III, Majadahonda, Madrid, Spain. email: jorge.pascualguerra@gmail.com
-
-
-
-
 
