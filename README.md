@@ -82,15 +82,15 @@ Microglial morphology provides relevant information about functional state, neur
 
 
 
-Operating system	             Download
+Operating system	Download
 
-Windows 64-bit	             -->     Microglia-Morphometrics-v1.0.0-windows-x64.zip
+**Windows 64-bit**	-->	Microglia-Morphometrics-v1.0.0-windows-x64.zip
 
-Ubuntu Linux 22.04 x86-64    -->     Microglia-Morphometrics-v1.0.0-ubuntu-22.04-x86\_64.tar.gz
+**Ubuntu Linux 22.04 x86-64**	-->	Microglia-Morphometrics-v1.0.0-ubuntu-22.04-x86\_64.tar.gz
 
-macOS (Apple Silicon)	     -->     Microglia-Morphometrics-v1.0.0-macos-arm64.zip
+**macOS (Apple Silicon)**	-->	Microglia-Morphometrics-v1.0.0-macos-arm64.zip
 
-macOS (Intel)	             -->     Microglia-Morphometrics-v1.0.0-macos-x86\_64.zip
+**macOS (Intel)**	-->	Microglia-Morphometrics-v1.0.0-macos-x86\_64.zip
 
 
 
