@@ -62,84 +62,6 @@ Microglial morphology provides relevant information about functional state, neur
 
 
 
-# **Inputs**
-
-
-
-Image folders organized either flat or by subfolders/groups.
-
-
-
-Common formats: PNG, JPG/JPEG, TIF/TIFF.
-
-
-
-Preprocessing parameters defined within the script.
-
-
-
-
-
-# **Outputs**
-
-
-
-CSV and XLSX tables.
-
-
-
-PNG figures for quality control and results.
-
-
-
-Integrated morphometric matrix.
-
-
-
-Statistical and post‑hoc results.
-
-
-
-PCA, UMAP, Random Forest feature importance, and SHAP values.
-
-
-
-
-
-# **Key Features**
-
-
-
-Modular end‑to‑end integration of multiple morphometric domains.
-
-
-
-Synthetic microglia generator for benchmarking.
-
-
-
-Automated dual CSV/XLSX export.
-
-
-
-AI‑ready descriptor matrix.
-
-
-
-Adaptive statistics with FDR correction.
-
-
-
-SHAP‑based interpretability.
-
-
-
-Functional documentation oriented toward biomedical users.
-
-
-
-
-
 # **Quick Start — Download and Run**
 
 
@@ -176,11 +98,11 @@ macOS (Intel)	             -->     Microglia-Morphometrics-v1.0.0-macos-x86\_64.
 
 
 
-1. Download and extract the appropriate archive into a folder on your computer.
+Download and extract the appropriate archive into a folder on your computer.
 
 
 
-2\. Open the extracted directory and launch the packaged application using the executable provided for your operating system.
+Open the extracted directory and launch the packaged application using the executable provided for your operating system.
 
 
 
@@ -241,6 +163,42 @@ Depending on the analyses performed, the pipeline generates:
 
 
 **Important:** The current implementation analyzes two-dimensional cellular profiles and does not perform three-dimensional reconstruction. Reliable measurements depend on suitable image quality and adequate segmentation of individual cells.
+
+
+
+
+
+# **Key Features**
+
+
+
+Modular end‑to‑end integration of multiple morphometric domains.
+
+
+
+Synthetic microglia generator for benchmarking.
+
+
+
+Automated dual CSV/XLSX export.
+
+
+
+AI‑ready descriptor matrix.
+
+
+
+Adaptive statistics with FDR correction.
+
+
+
+SHAP‑based interpretability.
+
+
+
+Functional documentation oriented toward biomedical users.
+
+
 
 
 
