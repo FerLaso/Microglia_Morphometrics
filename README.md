@@ -82,7 +82,7 @@ Microglial morphology provides relevant information about functional state, neur
 
 
 
-Operating system	Download
+Operating system	-->	Download
 
 **Windows 64-bit**	-->	Microglia-Morphometrics-v1.0.0-windows-x64.zip
 
