@@ -140,29 +140,107 @@ Functional documentation oriented toward biomedical users.
 
 
 
-# **Download**
+# **Quick Start — Download and Run**
 
 
 
-Downloads are available in the **Releases** section:
+**Microglia Morphometrics v1.0.0** is available as a pre-packaged desktop application for Windows, Linux and macOS. Users can download the corresponding release without compiling the Python source code.
 
 
 
-\-- Windows x64
+### Step 1. Download the application
 
 
 
-\-- Ubuntu Linux x86‑64
+* Visit the official **releases section**.
 
 
 
-\-- macOS (Apple Silicon, arm64)
+* Select the package corresponding to your operating system:
 
 
 
-\-- macOS (Intel, x86\_64)
+Operating system	             Download
+
+Windows 64-bit	             -->     Microglia-Morphometrics-v1.0.0-windows-x64.zip
+
+Ubuntu Linux 22.04 x86-64    -->     Microglia-Morphometrics-v1.0.0-ubuntu-22.04-x86\_64.tar.gz
+
+macOS (Apple Silicon)	     -->     Microglia-Morphometrics-v1.0.0-macos-arm64.zip
+
+macOS (Intel)	             -->     Microglia-Morphometrics-v1.0.0-macos-x86\_64.zip
 
 
+
+### Step 2. Extract and launch
+
+
+
+1. Download and extract the appropriate archive into a folder on your computer.
+
+
+
+2\. Open the extracted directory and launch the packaged application using the executable provided for your operating system.
+
+
+
+The repository also includes the Python script and Jupyter notebook for users who prefer working directly with the source code.
+
+
+
+### Step 3. Prepare the images
+
+
+
+The pipeline is designed for 2D images containing individual, sufficiently isolated cellular profiles.
+
+
+
+Supported formats include PNG, JPG/JPEG and TIF/TIFF.
+
+
+
+Images can be organized in a single directory or in subfolders representing experimental groups.
+
+
+
+### Step 3. Run the analysis
+
+
+
+Follow the application's interface to select your dataset and configure the available analysis options.
+
+
+
+The pipeline includes segmentation, skeletonization, fractal dimension, lacunarity, texture analysis, multiscale descriptors, graph-based morphometrics, Sholl analysis and downstream statistical modules.
+
+
+
+### Step 5. Inspect the outputs
+
+
+
+Depending on the analyses performed, the pipeline generates:
+
+
+
+* Morphometric tables in CSV and XLSX formats.
+
+
+
+* Quality-control images and analytical figures.
+
+
+
+* Integrated morphometric feature matrices.
+
+
+
+* Statistical comparisons and dimensionality-reduction outputs.
+
+
+
+**Important:** The current implementation analyzes two-dimensional cellular profiles and does not perform three-dimensional reconstruction. Reliable measurements depend on suitable image quality and adequate segmentation of individual cells.
 
 
 
