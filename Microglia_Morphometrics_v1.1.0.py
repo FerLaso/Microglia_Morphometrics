@@ -35,22 +35,34 @@ PACKAGE_MODULES = {'pillow': 'PIL', 'scikit-learn': 'sklearn', 'scikit-image': '
 if sys.version_info < (3, 12):
     raise RuntimeError("This validated release requires Python 3.12 or newer; Python 3.12 was tested.")
 
+# macOS Intel and Apple Silicon: use compatible prebuilt Numba/LLVM wheels.
+# Resolve the complete pinned environment in ONE pip transaction so UMAP/SHAP
+# cannot first pull a newer llvmlite that would require compilation from source.
+if platform.system() == "Darwin":
+    VALIDATED_PACKAGES.update({"numba": "0.62.1", "llvmlite": "0.45.1"})
+
 restart_required = []
+mismatched_packages = []
 for package, required in VALIDATED_PACKAGES.items():
     try:
         installed = get_installed_version(package)
     except PackageNotFoundError:
         installed = None
     if installed != required:
-        if not AUTO_INSTALL_DEPENDENCIES:
-            raise RuntimeError(f"Install {package}=={required}; found {installed}.")
+        mismatched_packages.append(f"{package}=={required} (found {installed})")
         module_name = PACKAGE_MODULES.get(package, package.replace("-", "_"))
-        was_loaded = any(name == module_name or name.startswith(module_name + ".")
-                         for name in sys.modules)
-        print(f"[INFO] Installing validated dependency: {package}=={required}")
-        subprocess.check_call([sys.executable, "-m", "pip", "install", f"{package}=={required}"])
-        if was_loaded:
+        if any(name == module_name or name.startswith(module_name + ".")
+               for name in sys.modules):
             restart_required.append(package)
+if mismatched_packages:
+    if not AUTO_INSTALL_DEPENDENCIES:
+        raise RuntimeError("Prepare the required environment: " + "; ".join(mismatched_packages))
+    specs = [f"{package}=={required}" for package, required in VALIDATED_PACKAGES.items()]
+    command = [sys.executable, "-m", "pip", "install"]
+    if platform.system() == "Darwin":
+        command.append("--only-binary=numba,llvmlite")
+    print("[INFO] Installing the pinned scientific environment in one transaction.")
+    subprocess.check_call(command + specs)
 if restart_required:
     raise RuntimeError("Dependencies changed after import. Restart the kernel and run from the top: "
                        + ", ".join(restart_required))
