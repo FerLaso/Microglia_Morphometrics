@@ -2,11 +2,15 @@
 
 
 
-This notebook presents a fully reproducible and universally applicable pipeline for quantitative microglial morphometric analysis. Although the workflow is technically compatible with any single-cell dataset, it has been specifically optimized and documented for microglia, the resident immune cells of the central nervous system.
+**A modular Python workflow for two-dimensional, multiscale morphometric analysis of microglial images**
 
 
 
-Microglial morphology provides relevant information about functional state, neuroimmune activity, and tissue homeostasis. However, quantitative morphometric analysis remains inconsistent across laboratories and often relies on partially manual workflows, limited descriptor sets, and computational approaches with insufficient validation. Here, this work presents a fully automated, modular, and reproducible Python-based pipeline for multiscale microglial morphometry. The framework integrates dataset loading, preprocessing, segmentation, skeletonization, fractal dimension, lacunarity, GLCM texture metrics, multiscale fractal spectrum analysis, graph‑based descriptors, Sholl profiling, adaptive statistics, PCA/UMAP, Random Forest classification, and SHAP interpretability.
+Microglia Morphometrics combines image preprocessing, segmentation, skeletonization, fractal and lacunarity analysis, grayscale texture descriptors, pixel-level graph topology, Sholl profiling, statistical testing, and exploratory machine-learning analyses in one inspectable workflow.
+
+
+
+**Scope:** the software analyzes **user-provided, two-dimensional, single-cell images**. Selection, cropping, and any preparation performed before image import are **manual/user-dependent**. The subsequent computational analysis is automated, with visual inspection of intermediate results recommended. The software does **not** reconstruct three-dimensional cellular arbors or infer microglial functional states from morphology.
 
 
 
@@ -66,7 +70,7 @@ Microglial morphology provides relevant information about functional state, neur
 
 
 
-**Microglia Morphometrics v1.0.0** is available as a pre-packaged desktop application for Windows, Linux and macOS. Users can download the corresponding release without compiling the Python source code.
+**Microglia Morphometrics v1.1.0** is available as a pre-packaged desktop application for Windows, Linux and macOS. Users can download the corresponding release without compiling the Python source code.
 
 
 
@@ -84,13 +88,13 @@ Microglial morphology provides relevant information about functional state, neur
 
 Operating system	-->	Download
 
-**Windows 64-bit**	-->	Microglia-Morphometrics-v1.0.0-windows-x64.zip
+**Windows 64-bit**	-->	Microglia-Morphometrics-v1.1.0-windows-x64.zip
 
-**Ubuntu Linux 22.04 x86-64**	-->	Microglia-Morphometrics-v1.0.0-ubuntu-22.04-x86\_64.tar.gz
+**Ubuntu Linux 22.04 x86-64**	-->	Microglia-Morphometrics-v1.1.0-ubuntu-22.04-x86\_64.tar.gz
 
-**macOS (Apple Silicon)**	-->	Microglia-Morphometrics-v1.0.0-macos-arm64.zip
+**macOS (Apple Silicon)**	-->	Microglia-Morphometrics-v1.1.0-macos-arm64.zip
 
-**macOS (Intel)**	-->	Microglia-Morphometrics-v1.0.0-macos-x86\_64.zip
+**macOS (Intel)**	-->	Microglia-Morphometrics-v1.1.0-macos-x86\_64.zip
 
 
 
@@ -222,5 +226,5 @@ Translational Stroke Laboratory (TREAT), Clinical Neurosciences Research Laborat
 
 Jorge Pascual Guerra - ORCID ID: 0000-0001-6667-3310
 
-Neurooncology Unit, Chronic Disease Department (UFIEC), Instituto de Salud Carlos III, Majadahonda, Madrid, Spain. email: jorge.pascualguerra@gmail.com
+Neurooncology Unit, UFIEC, Instituto de Salud Carlos III, Majadahonda, Spain. email: jorge.pascualguerra@gmail.com
 

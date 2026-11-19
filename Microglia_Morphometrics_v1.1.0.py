@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 # Microglia Morphometrics v1.1.0
 # Code exported verbatim from the accompanying notebook.
-# Read the notebook for methodological explanations and execution settings.
 
 # %% Notebook code cell 3
 # ============================================================
@@ -521,6 +520,44 @@ def plot_bars_or_boxplot(
     plt.show()
 
 print("[INFO] ===== Environment Created =====")
+
+def configure_compatibility_warnings():
+    """Hide two known library deprecations; retain other analytical warnings."""
+    import warnings
+    warnings.filterwarnings(
+        "ignore", message=r"vert: bool will be deprecated.*",
+        category=PendingDeprecationWarning,
+    )
+    warnings.filterwarnings(
+        "ignore", message=r"The inplace keyword in DataFrame\.dropna is deprecated.*",
+        category=Warning,
+    )
+
+
+def plot_shap_magnitudes(shap_for_plot, X_df, class_averaged=True, max_display=20):
+    """Plot attribution magnitudes, never signed effects toward a class."""
+    import matplotlib.pyplot as plt
+    import shap
+    values = np.asarray(shap_for_plot, dtype=float)
+    if values.ndim != 2 or values.shape != X_df.shape:
+        raise ValueError("SHAP summary and feature matrix must have the same 2-D shape.")
+    if not np.isfinite(values).all():
+        raise ValueError("SHAP summary contains nonfinite contributions.")
+    magnitudes = np.abs(values)
+    plt.figure()
+    shap.summary_plot(
+        magnitudes, X_df, max_display=max_display, show=False,
+        rng=np.random.default_rng(42),
+    )
+    fig = plt.gcf()
+    ax = fig.axes[0]
+    label = "Class-averaged |SHAP value|" if class_averaged else "|SHAP value|"
+    ax.set_xlabel(label)
+    ax.set_xlim(left=0)
+    ax.set_title("SHAP attribution magnitudes (non-directional)")
+    return fig, ax
+
+configure_compatibility_warnings()
 
 # %% Notebook code cell 5
 # ============================================================
@@ -3408,7 +3445,7 @@ for df in feature_dfs:
     id_col = detect_id_column(df)
     state_col = detect_state_column(df)
 
-    df.rename(columns={id_col: "cell_id", state_col: "cell_state"}, inplace=True)
+    df = df.rename(columns={id_col: "cell_id", state_col: "cell_state"})
 
     # Save sample_id once, only for final display
     if "sample_id" in df.columns:
@@ -3423,7 +3460,7 @@ for df in feature_dfs:
 
     for col in auxiliary_id_cols:
         if col in df.columns and col not in ["cell_id", "cell_state"]:
-            df.drop(columns=[col], inplace=True)
+            df = df.drop(columns=[col])
 
     # Remove duplicated columns inside the same dataframe
     df = df.loc[:, ~df.columns.duplicated()]
@@ -3629,6 +3666,7 @@ def sholl_mixed_anova(df, sholl_cols, group_col="cell_state"):
 print("\n[INFO] ===== Module 9 - Statistical Testing =====")
 
 warnings.filterwarnings("default")
+configure_compatibility_warnings()
 
 # ------------------------------------------------------------
 # Setup
@@ -4114,8 +4152,7 @@ df_stats_results
 # Post-hoc Pairwise Comparisons
 # ============================================================
 
-warnings.filterwarnings("ignore", category=RuntimeWarning)
-warnings.filterwarnings("ignore", category=UserWarning)
+configure_compatibility_warnings()
 
 if "df_master" not in globals():
     raise NameError("df_master not found. Please run Module 8 or the Master Builder first.")
@@ -4472,8 +4509,7 @@ plt.show()
 # ============================================================
 
 # SHAP warnings
-warnings.filterwarnings("ignore", category=FutureWarning)
-warnings.filterwarnings("ignore", category=UserWarning)
+configure_compatibility_warnings()
 
 # Use original feature names
 feature_names = X_df.columns.tolist()
@@ -4510,6 +4546,8 @@ else:
         mean_abs_shap = np.mean(np.abs(shap_array), axis=0)
         shap_for_plot = shap_array
 
+shap_class_averaged = isinstance(shap_values, list) or shap_array.ndim == 3
+
 # ------------------------------------------------------------
 # Create SHAP table
 # ------------------------------------------------------------
@@ -4537,13 +4575,9 @@ plt.savefig(
 plt.show()
 
 # ------------------------------------------------------------
-# SHAP summary plot
+# SHAP summary plot — absolute attribution magnitudes
 # ------------------------------------------------------------
-shap.summary_plot(
-    shap_for_plot,
-    X_df,
-    show=False
-)
+plot_shap_magnitudes(shap_for_plot, X_df, class_averaged=shap_class_averaged, max_display=20)
 plt.tight_layout()
 plt.savefig(
     os.path.join(EXPORT_DIR, "Module 10 - shap_summary_plot.png"),
